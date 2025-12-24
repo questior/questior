@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Embedded Quiz</title>
+	<style>
+	html, body {
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
+	iframe {
+		width: 100%;
+		height: 100%;
+		border: 0;
+	}
+	</style>
+</head>
+<body>
+
+	<iframe id="quiz-frame"
+		src="https://elkkumorsa.github.io/questior/questionnaire.html"
+		allow="fullscreen">
+	</iframe>
+
+	<script>
+	const QUIZ_URL = "https://elkkumorsa123.github.io/Questior/newest_save.json";
+	const frame = document.getElementById("quiz-frame");
+
+	window.addEventListener("message", function(event) {
+		if(event.data === "requestQuizUrl") {
+			frame.contentWindow.postMessage({
+				call: "load_from_url",
+				url: QUIZ_URL
+			}, "*");
+			console.log("Parent sent quiz URL to Godot:", QUIZ_URL);
+		}
+	});
+	</script>
+
+</body>
+</html>
