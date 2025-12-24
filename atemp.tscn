@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://8lrswv8w6a8h"]
+
+[ext_resource type="Script" uid="uid://b66gm07lv6si4" path="res://general_result.gd" id="1_6fpdk"]
+[ext_resource type="Script" uid="uid://8rrn1uopodbh" path="res://resulttext.gd" id="2_dwewy"]
+[ext_resource type="Script" uid="uid://b63kjss65w2sc" path="res://delete2.gd" id="2_sspuc"]
+[ext_resource type="Script" uid="uid://q3vi7c0culsm" path="res://variableres.gd" id="3_nqrs7"]
+[ext_resource type="Script" uid="uid://d24sds6we0kfw" path="res://var_range.gd" id="4_6myfd"]
+
+[node name="a1" type="HBoxContainer"]
+custom_minimum_size = Vector2(108.835, 0)
+script = ExtResource("1_6fpdk")
+metadata/arraynumber2 = 1
+
+[node name="resulttext" type="TextEdit" parent="."]
+custom_minimum_size = Vector2(550, 30)
+layout_mode = 2
+placeholder_text = "Classical Liberal"
+wrap_mode = 1
+autowrap_mode = 1
+scroll_fit_content_height = true
+scroll_fit_content_width = true
+script = ExtResource("2_dwewy")
+
+[node name="separator" type="VSeparator" parent="."]
+custom_minimum_size = Vector2(25, -11.205)
+layout_mode = 2
+
+[node name="variable" type="TextEdit" parent="."]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+placeholder_text = "liberalism"
+wrap_mode = 1
+autowrap_mode = 1
+scroll_fit_content_height = true
+scroll_fit_content_width = true
+script = ExtResource("3_nqrs7")
+
+[node name="var_range" type="TextEdit" parent="."]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+placeholder_text = "1
+3"
+scroll_fit_content_height = true
+scroll_fit_content_width = true
+script = ExtResource("4_6myfd")
+
+[node name="delete" type="Button" parent="."]
+layout_mode = 2
+disabled = true
+text = "Delete"
+script = ExtResource("2_sspuc")
+
+[connection signal="text_changed" from="resulttext" to="resulttext" method="_on_text_changed"]
+[connection signal="text_changed" from="variable" to="variable" method="_on_text_changed"]
+[connection signal="text_changed" from="var_range" to="var_range" method="_on_text_changed"]
+[connection signal="pressed" from="delete" to="delete" method="_on_pressed"]

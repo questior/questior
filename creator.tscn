@@ -1,0 +1,159 @@
+[gd_scene load_steps=8 format=3 uid="uid://bqo8at4qvum24"]
+
+[ext_resource type="PackedScene" uid="uid://g26vamqblox6" path="res://qtemp.tscn" id="1_v0rtd"]
+[ext_resource type="Script" uid="uid://bvt1g011gwd1c" path="res://general_save.gd" id="1_xu1mm"]
+[ext_resource type="Script" uid="uid://chadvn2g2al6r" path="res://new_question.gd" id="2_v0rtd"]
+[ext_resource type="PackedScene" uid="uid://8lrswv8w6a8h" path="res://atemp.tscn" id="3_blgnk"]
+[ext_resource type="Script" uid="uid://dc30k84o7ax86" path="res://new_result.gd" id="4_1juwm"]
+[ext_resource type="Script" uid="uid://3f2swxdh2eok" path="res://show_additional.gd" id="4_oeey1"]
+[ext_resource type="Script" uid="uid://dq3nt0iwdumnn" path="res://show_questions.gd" id="5_nen57"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control"]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 65.0
+offset_right = 1014.0
+offset_bottom = 526.0
+
+[node name="TextBoxes" type="VBoxContainer" parent="Control/ScrollContainer"]
+clip_contents = true
+layout_mode = 2
+
+[node name="q1" parent="Control/ScrollContainer/TextBoxes" instance=ExtResource("1_v0rtd")]
+custom_minimum_size = Vector2(101.65, 0)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/ScrollContainer/TextBoxes"]
+layout_mode = 2
+
+[node name="NewQuestion" type="Button" parent="Control/ScrollContainer/TextBoxes/HBoxContainer"]
+custom_minimum_size = Vector2(950.01, -17.6)
+layout_mode = 2
+text = "New Question"
+script = ExtResource("2_v0rtd")
+
+[node name="Labels" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 32.0
+offset_right = 1028.0
+offset_bottom = 58.0
+
+[node name="Question" type="RichTextLabel" parent="Control/Labels"]
+custom_minimum_size = Vector2(580, 0)
+layout_mode = 2
+text = "Question"
+
+[node name="answer_var" type="RichTextLabel" parent="Control/Labels"]
+custom_minimum_size = Vector2(150.825, 0)
+layout_mode = 2
+text = "Answer variable"
+
+[node name="answer_change" type="RichTextLabel" parent="Control/Labels"]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+tooltip_text = "Start from button 1, separate by new line. Please provide 5 values."
+text = "Variable change"
+
+[node name="Misc" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Misc"]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 65.0
+offset_right = 1014.0
+offset_bottom = 312.0
+
+[node name="TextBoxes" type="VBoxContainer" parent="Misc/ScrollContainer"]
+clip_contents = true
+layout_mode = 2
+
+[node name="a1" parent="Misc/ScrollContainer/TextBoxes" instance=ExtResource("3_blgnk")]
+layout_mode = 2
+metadata/arraynumber = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Misc/ScrollContainer/TextBoxes"]
+layout_mode = 2
+
+[node name="NewResult" type="Button" parent="Misc/ScrollContainer/TextBoxes/HBoxContainer"]
+custom_minimum_size = Vector2(950.01, -17.6)
+layout_mode = 2
+text = "New Result"
+script = ExtResource("4_1juwm")
+
+[node name="Labels" type="HBoxContainer" parent="Misc"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 32.0
+offset_right = 1028.0
+offset_bottom = 58.0
+
+[node name="Question" type="RichTextLabel" parent="Misc/Labels"]
+custom_minimum_size = Vector2(580, 0)
+layout_mode = 2
+text = "Result"
+
+[node name="answer_var" type="RichTextLabel" parent="Misc/Labels"]
+custom_minimum_size = Vector2(150.825, 0)
+layout_mode = 2
+text = "If variable"
+
+[node name="answer_change" type="RichTextLabel" parent="Misc/Labels"]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+tooltip_text = "Start from button 1, separate by new line. Please provide 5 values."
+text = "is in range"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 604.0
+offset_right = 279.0
+offset_bottom = 635.0
+
+[node name="Menu" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+text = "Main Menu"
+
+[node name="Save" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+text = "Save"
+script = ExtResource("1_xu1mm")
+
+[node name="ShowAdditional" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+text = "Results"
+script = ExtResource("4_oeey1")
+
+[node name="ShowQuestions" type="Button" parent="HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+text = "Questions"
+script = ExtResource("5_nen57")
+
+[connection signal="pressed" from="Control/ScrollContainer/TextBoxes/HBoxContainer/NewQuestion" to="Control/ScrollContainer/TextBoxes/HBoxContainer/NewQuestion" method="_on_pressed"]
+[connection signal="pressed" from="Misc/ScrollContainer/TextBoxes/HBoxContainer/NewResult" to="Misc/ScrollContainer/TextBoxes/HBoxContainer/NewResult" method="_on_pressed"]
+[connection signal="pressed" from="HBoxContainer/Save" to="HBoxContainer/Save" method="_on_pressed"]
+[connection signal="pressed" from="HBoxContainer/ShowAdditional" to="HBoxContainer/ShowAdditional" method="_on_pressed"]
+[connection signal="pressed" from="HBoxContainer/ShowQuestions" to="HBoxContainer/ShowQuestions" method="_on_pressed"]

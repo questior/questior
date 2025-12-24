@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://g26vamqblox6"]
+
+[ext_resource type="Script" uid="uid://bmm7th84qmfbg" path="res://general_question.gd" id="1_1vm2q"]
+[ext_resource type="Script" uid="uid://cfj6eqrllcbnk" path="res://delete.gd" id="1_afh0n"]
+[ext_resource type="Script" uid="uid://djgebtp206vqr" path="res://questiontext.gd" id="2_jlvsv"]
+[ext_resource type="Script" uid="uid://ckohytctukc1s" path="res://variable.gd" id="3_70hli"]
+[ext_resource type="Script" uid="uid://d0gbohkbr8mp1" path="res://var_change.gd" id="4_4loo8"]
+
+[node name="q1" type="HBoxContainer"]
+custom_minimum_size = Vector2(108.835, 0)
+script = ExtResource("1_1vm2q")
+metadata/arraynumber = 1
+
+[node name="questiontext" type="TextEdit" parent="."]
+custom_minimum_size = Vector2(550, 30)
+layout_mode = 2
+placeholder_text = "If you have nothing to hide, you have nothing to worry about"
+wrap_mode = 1
+autowrap_mode = 1
+scroll_fit_content_height = true
+scroll_fit_content_width = true
+script = ExtResource("2_jlvsv")
+
+[node name="separator" type="VSeparator" parent="."]
+custom_minimum_size = Vector2(25, -11.205)
+layout_mode = 2
+
+[node name="variable" type="TextEdit" parent="."]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+placeholder_text = "liberalism"
+wrap_mode = 1
+autowrap_mode = 1
+scroll_fit_content_height = true
+scroll_fit_content_width = true
+script = ExtResource("3_70hli")
+
+[node name="var_change" type="TextEdit" parent="."]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+placeholder_text = "1
+0.5
+0
+-0.5
+-1"
+scroll_fit_content_height = true
+scroll_fit_content_width = true
+script = ExtResource("4_4loo8")
+
+[node name="delete" type="Button" parent="."]
+layout_mode = 2
+disabled = true
+text = "Delete"
+script = ExtResource("1_afh0n")
+
+[connection signal="text_changed" from="questiontext" to="questiontext" method="_on_text_changed"]
+[connection signal="text_changed" from="variable" to="variable" method="_on_text_changed"]
+[connection signal="text_changed" from="var_change" to="var_change" method="_on_text_changed"]
+[connection signal="pressed" from="delete" to="delete" method="_on_pressed"]

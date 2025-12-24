@@ -1,0 +1,87 @@
+[gd_scene load_steps=3 format=3 uid="uid://l18nab737iaj"]
+
+[ext_resource type="Script" uid="uid://0qkp66y26n32" path="res://load_game.gd" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://d251iw3dgh2ve" path="res://BasePlayer.gd" id="1_onrkg"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_onrkg")
+
+[node name="MainMenu" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LoadGame" type="Button" parent="MainMenu"]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 305.0
+offset_right = 810.0
+offset_bottom = 438.0
+text = "Load Form"
+script = ExtResource("1_4flbx")
+
+[node name="FileDialog" type="FileDialog" parent="MainMenu"]
+title = "Open a File"
+file_mode = 0
+access = 2
+use_native_dialog = true
+
+[node name="Game" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Game"]
+layout_mode = 0
+offset_left = 471.0
+offset_top = 9.0
+offset_right = 610.0
+offset_bottom = 34.0
+text = "Current Question"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Game"]
+layout_mode = 0
+offset_left = 383.0
+offset_top = 99.0
+offset_right = 686.0
+offset_bottom = 270.0
+
+[node name="2agree" type="Button" parent="Game/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "Strongly agree"
+
+[node name="sagree" type="Button" parent="Game/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "Somewhat agree"
+
+[node name="neutral" type="Button" parent="Game/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "Neutral/unsure"
+
+[node name="sdisagree" type="Button" parent="Game/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "Somewhat disagree"
+
+[node name="2disagree" type="Button" parent="Game/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "Strongly disagree"
+
+[connection signal="pressed" from="MainMenu/LoadGame" to="MainMenu/LoadGame" method="_on_pressed"]
+[connection signal="file_selected" from="MainMenu/FileDialog" to="MainMenu/LoadGame" method="_on_file_dialog_file_selected"]
+[connection signal="pressed" from="Game/VBoxContainer/2agree" to="." method="_on_agree_pressed"]
+[connection signal="pressed" from="Game/VBoxContainer/sagree" to="." method="_on_sagree_pressed"]
+[connection signal="pressed" from="Game/VBoxContainer/neutral" to="." method="_on_neutral_pressed"]
+[connection signal="pressed" from="Game/VBoxContainer/sdisagree" to="." method="_on_sdisagree_pressed"]
+[connection signal="pressed" from="Game/VBoxContainer/2disagree" to="." method="_on_disagree_pressed"]
