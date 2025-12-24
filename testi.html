@@ -28,14 +28,22 @@
 		const QUIZ_URL = "https://elkkumorsa123.github.io/Questior/newest_save.json";
 		const frame = document.getElementById("quiz-frame");
 
+		// Setup a global bridge for Godot
+		window.godotSend = function(node_name, method_name, param) {
+			frame.contentWindow.postMessage({
+				node: node_name,
+				method: method_name,
+				param: param
+			}, "*");
+		};
+
 		window.addEventListener("message", function(event) {
 			if(event.data === "requestQuizUrl") {
-				frame.contentWindow.postMessage({
-					url: QUIZ_URL
-				}, "*");
+				window.godotSend("LoadFile", "load_from_url", QUIZ_URL);
 				console.log("Parent sent quiz URL to Godot:", QUIZ_URL);
 			}
 		});
 	</script>
+
 </body>
 </html>
