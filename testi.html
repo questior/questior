@@ -25,17 +25,28 @@
 		allow="fullscreen">
 	</iframe>
 
-<script>
-	const frame = document.getElementById("quiz-frame");
+	<script>
 	const QUIZ_URL = "https://elkkumorsa123.github.io/Questior/newest_save.json";
+	const frame = document.getElementById("quiz-frame");
 
+	// Listen for messages from the iframe (Godot)
 	window.addEventListener("message", function(event) {
 		if(event.data === "requestQuizUrl") {
-			console.log("Parent sending URL to Godot:", QUIZ_URL);
-			frame.contentWindow.postMessage({ url: QUIZ_URL }, "*");
+			// Send the quiz URL to Godot
+			frame.contentWindow.postMessage({
+				call: "load_from_url",
+				url: QUIZ_URL
+			}, "*");
+
+			console.log("Parent sent quiz URL to Godot:", QUIZ_URL);
 		}
 	});
-</script>
+
+	// Debug: log messages coming from iframe
+	window.addEventListener("message", function(event) {
+		console.log("Parent message received:", event.data);
+	});
+	</script>
 
 </body>
 </html>
