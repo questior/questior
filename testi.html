@@ -19,9 +19,8 @@
 	</style>
 </head>
 <body>
-
-	<iframe id="quiz-frame"
-		src="https://elkkumorsa123.github.io/Questior/questionnaire.html"
+	<iframe id="quiz-frame" 
+		src="https://elkkumorsa123.github.io/Questior/questionnaire.html" 
 		allow="fullscreen">
 	</iframe>
 
@@ -29,19 +28,13 @@
 		const QUIZ_URL = "https://elkkumorsa123.github.io/Questior/newest_save.json";
 		const frame = document.getElementById("quiz-frame");
 
-		// Listen for message from Godot iframe
+		// Send URL to Godot iframe when requested
 		window.addEventListener("message", function(event) {
 			if(event.data === "requestQuizUrl") {
-				// Send message to Godot node using Engine.send
-				frame.contentWindow.postMessage({
-					node: "LoadFile",       // Node name in Godot
-					method: "load_from_url", // Function in GDScript
-					args: [QUIZ_URL]
-				}, "*");
+				frame.contentWindow.godotLoadFile(QUIZ_URL);
 				console.log("Parent sent quiz URL to Godot:", QUIZ_URL);
 			}
 		});
 	</script>
-
 </body>
 </html>
