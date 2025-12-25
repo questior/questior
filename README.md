@@ -30,7 +30,7 @@ To edit the background image, go to Misc and enter a image link. However note th
 
 Both versions are used with URL parameter `quiz=`, if the quiz URL is invalid, they will be sent to the main menu. Here's an example of a embedded quiz:
 
-	<iframe src="https://elkkumorsa123.github.io/Questior/Index.html?quiz=https://elkkumorsa123.github.io/Questior/example_quiz.json"
+	<iframe src="https://questior.github.io/Questior/Index.html?quiz=https://questior.github.io/Questior/example_quiz.json"
 			frameborder="0" 
 			marginheight="0" 
 			marginwidth="0" 
@@ -39,7 +39,7 @@ Both versions are used with URL parameter `quiz=`, if the quiz URL is invalid, t
 			scrolling="auto">
 	</iframe>
 
-Here it would simply load a full screen quiz from `https://elkkumorsa123.github.io/Questior/example_quiz.json`.
+Here it would simply load a full screen quiz from `https://questior.github.io/Questior/example_quiz.json`.
 
 **How to install on your own server:**
 
