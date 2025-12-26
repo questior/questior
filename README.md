@@ -30,7 +30,7 @@ To edit the background image, go to Misc and enter a image link. However note th
 
 Both versions are used with URL parameter `quiz=`, if the quiz URL is invalid, they will be sent to the main menu. Here's an example of a embedded quiz:
 
-	<iframe src="https://questior.github.io/questior/Index.html?quiz=https://questior.github.io/questior/example_quiz.json"
+	<iframe src="https://questior.github.io/questior?quiz=https://questior.github.io/questior/example_quiz.json"
 			frameborder="0" 
 			marginheight="0" 
 			marginwidth="0" 
